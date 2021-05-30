@@ -1,10 +1,14 @@
 import React from 'react'
+import emailjs from 'emailjs-com';
+import PropTypes from 'prop-types'
 
 const Contact = (props) => (
+  
     <section id="contact">
+        
         <div className="inner">
             <section>
-                <form method="post" action="#">
+                <form method="post" action="#" onSubmit={props.sendEmail}>
                     <div className="field half first">
                         <label htmlFor="name">Name</label>
                         <input type="text" name="name" id="name" />
@@ -28,28 +32,24 @@ const Contact = (props) => (
                     <div className="contact-method">
                         <span className="icon alt fa-envelope"></span>
                         <h3>Email</h3>
-                        <a href="#">information@untitled.tld</a>
+                        <a href="#">contact@ldigital.bg</a>
                     </div>
                 </section>
                 <section>
                     <div className="contact-method">
                         <span className="icon alt fa-phone"></span>
                         <h3>Phone</h3>
-                        <span>(000) 000-0000 x12387</span>
+                        <span>+359 889216996</span>
                     </div>
                 </section>
-                <section>
-                    <div className="contact-method">
-                        <span className="icon alt fa-home"></span>
-                        <h3>Address</h3>
-                        <span>1234 Somewhere Road #5432<br />
-                        Nashville, TN 00000<br />
-                        United States of America</span>
-                    </div>
-                </section>
+               
             </section>
         </div>
     </section>
+    
 )
+Contact.propTypes = {
+    sendEmail: PropTypes.func
+}
 
 export default Contact

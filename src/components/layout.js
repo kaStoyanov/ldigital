@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-
+import emailjs from 'emailjs-com';
 import '../assets/scss/main.scss'
 import Header from './Header'
 import Menu from './Menu'
@@ -34,17 +34,28 @@ class Layout extends React.Component {
             isMenuVisible: !this.state.isMenuVisible
         })
     }
+    sendEmail(e){
+        e.preventDefault();
 
+        emailjs.sendForm('service_hfqxwnc', 'template_ggwk3bs', e.target, 'user_31zhgKAdOEUMpSIDcG3Ly')
+          .then((result) => {
+              console.log(result.text);
+          }, (error) => {
+              console.log(error.text);
+          });
+          e.target.reset()
+    
+    }
     render() {
         const { children } = this.props
 
         return (
             <div className={`body ${this.state.loading} ${this.state.isMenuVisible ? 'is-menu-visible' : ''}`}>
                 <div id="wrapper">
-                    <Header onToggleMenu={this.handleToggleMenu} />
+                    
                     {children}
-                    <Contact />
-                    <Footer />
+                    <Contact sendEmail={this.sendEmail}/>
+                    
                 </div>
                 <Menu onToggleMenu={this.handleToggleMenu} />
             </div>
